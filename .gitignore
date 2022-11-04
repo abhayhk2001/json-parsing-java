@@ -3,7 +3,6 @@
 ##############################
 .mtj.tmp/
 *.class
-*.jar
 *.war
 *.ear
 *.nar
@@ -82,5 +81,4 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
-
 *.json
