@@ -21,7 +21,7 @@ import tech.tablesaw.io.json.JsonReadOptions.Builder;
 
 import static tech.tablesaw.aggregate.AggregateFunctions.firstString;
 
-public class Parse_TableSaw {
+public class ParseTableSaw {
 
 	public static void main(String[] args) {
 		int[] counts = new int[] { 100 };
@@ -33,30 +33,30 @@ public class Parse_TableSaw {
 			String finalJSON = "";
 			long startTime = System.nanoTime();
 			try {
-				Parse_TableSaw.decompressGzip(source, target);
+				ParseTableSaw.decompressGzip(source, target);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			try {
-				finalJSON = Parse_TableSaw.formatJSON(target, count);
+				finalJSON = ParseTableSaw.formatJSON(target, count);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			times[0] = System.nanoTime() - startTime;
 
 			startTime = System.nanoTime();
-			Table table = Parse_TableSaw.ParseJSON(finalJSON);
+			Table table = ParseTableSaw.ParseJSON(finalJSON);
 			times[1] = System.nanoTime() - startTime;
 
 			startTime = System.nanoTime();
-			table = Parse_TableSaw.pivot(table);
+			table = ParseTableSaw.pivot(table);
 			times[2] = System.nanoTime() - startTime;
 
 			for (long time : times) {
 				System.out.println(time / 1000000000.0);
 			}
 
-			// Parse_TableSaw.convertToParquet(table);
+			// ParseTableSaw.convertToParquet(table);
 			File file = new File("./data/connectdata-day=2022-09-19_device=s_96_2.json");
 			file.delete();
 			file = new File("./data/connectdata-day=2022-09-19_device=s_96_2_modified.json");
